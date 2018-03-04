@@ -16,3 +16,6 @@ A web interface for controlling and debugging the network.
 
 ### 433 MHz Receiver
 A 433 MHz receiver constructed from a modified wall plug (Normal receiver modules such as the RWS-371 are not fast enough) connected to an Arduino, the Arduino spits JSON encoded messages to a raspberry pi on successful reception. The receiver could just as well be connected to the raspberry PI, in fact, that would be more precise due to its higher speed, however; due to the high-frequency noise from the AGC triggering the comparator of the ASK receiver, the raspberry PI would experience constant interrupts, producing a very high CPU utilization. Hence a dedicated microcontroller is used to sift out the interesting signals.
+
+
+![alt text](/docs/receiver.png "Picture of 433.92 MHz receiver")
