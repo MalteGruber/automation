@@ -1,4 +1,5 @@
-var b=require("./broadcast.js")
+
+var b=require("../common/broadcast.js")
 b.startWithName("433 Mhz receiver")
 b.setOnConnectListener(function(){});
 b.setOnDisonnectListener(function(){})

@@ -13,16 +13,18 @@ b.setOnReadyListener(function(){
 b.setOnMessageListener(function(msg){
 	console.log("GOT MESSAGE",msg);
 })
-
 -------------------------------------------------------
-
 */
 
 
 
+/*
+In common folder: npm init, npm link
+
+In client folder (The one that uses common): npm link name-of-file
 
 
-
+*/
 
 
 var WebSocketClient = require('websocket').client;
@@ -105,18 +107,30 @@ function startHeartBeats(){
 
 }
 
+
+const path = require('path');
+function resolveHome(filepath) {
+    if (filepath[0] === '~') {
+        return path.join(process.env.HOME, filepath.slice(1));
+    }
+    return filepath;
+}
+
 /*Websocket stuff*/
 var fs = require('fs');
-var path="../websocket_address.ip";
+var serverAddressFile="~/websocket_address.ip";
 var serverAddress="ws://youraddresshere.cow:9001";
 var connection=null;
 
 try{
-	serverAddress = fs.readFileSync(path, 'utf8');
+	serverAddress = fs.readFileSync(resolveHome(serverAddressFile), 'utf8');
 	serverAddress=serverAddress.replace("\n","");
 
 } catch(e){
+
+	console.log(e)
 	console.error("ERROR! Please specify an IP address in a text file at "+path);
+
 	console.error("The file should contain an address in the following format:");
 	console.error("ws://123.321.123.321:9400");
 	console.error("OBS! Do not add a new line character at the end of the address!");
