@@ -1,10 +1,10 @@
 
 
 
-var connection=null;
+var broadcast=null;
 
-exports.setConnection = function (c) {
-	connection=c;
+exports.setBroadcastCallback = function (c) {
+	broadcast=c;
 }
 
 
@@ -27,7 +27,7 @@ exports.onMessage = function (msg) {
 			break;
 
 			case "LIST":
-				connection.sendUTF(JSON.stringify(events));
+				broadcast(events);
 			break;
 			case "DELETE":
 				console.log("deleting event",msg.timecmd.eventId)
@@ -47,7 +47,7 @@ function getUTC(){
 }
 function sendCommands(action){
 	for (var i = 0; i < action.length; i++) {
-		connection.sendUTF(JSON.stringify(action[i]));
+		broadcast(action[i]);
 	}
 }
 
