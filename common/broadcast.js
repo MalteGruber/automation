@@ -94,9 +94,10 @@ function onMessage(msg){
 function sendHeartbeat(){
 	var datetime = new Date().toJSON().slice(0,10) 
 	+ " " + new Date(new Date()).toString().split(' ')[4];
-	if(connection)
-		sendWs( systemName+" ip="+ip.address()+" @ "+datetime);
-
+	if(connection){
+	//	sendWs( systemName+" ip="+ip.address()+" @ "+datetime);
+		sendWs(JSON.stringify({heartbeat:systemName,ip:ip.address(),time:datetime}));
+	}
 }
 
 
@@ -241,7 +242,9 @@ exports.startWithName=function(name){
 	console.log("Starting server with name ".blue,('"'+systemName+'"').green)
 	init();
 }
-
+exports.sendHeartbeat=function(){
+	sendHeartbeat();
+}
 
 
 

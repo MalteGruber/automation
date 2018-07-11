@@ -1,9 +1,5 @@
 
-
 var b=require("../common/broadcast.js")
-
-
-
 var timer=require("./timer")
 
 function getUTC(){
@@ -24,7 +20,7 @@ b.startWithName("Timer")
 b.setOnConnectListener(function(){});
 b.setOnDisonnectListener(function(){})
 b.setOnReadyListener(function(){
-	b.broadcast({hej:"HEELOO :D "});
+	//b.broadcast({hej:"HEELOO :D "});
 });
 b.setOnMessageListener(function(msg){
     timer.onMessage(msg);
