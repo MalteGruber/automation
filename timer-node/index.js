@@ -25,7 +25,7 @@ b.setOnReadyListener(function(){
 b.setOnMessageListener(function(msg){
     timer.onMessage(msg);
 	if(msg.poke){
-		sendHeartbeat();
+		b.sendHeartbeat();
 	}
 })
 
