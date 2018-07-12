@@ -14,7 +14,8 @@ Files shared betewen all nodes are stored in the `/common/` folder.
 ### broadcast.js
 The `broadcast.js` file contains code for connecting to the websocket server. Boilerplate looks as follows
 ```
-var b=require("./broadcast.js")
+
+var b=require("../common/broadcast.js")
 b.startWithName("Some client name")
 b.setOnConnectListener(function(){});
 b.setOnDisonnectListener(function(){})
