@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="background: #222; color:#0f3;">
+    
+        <div style="text-align: center;">
+            <br><br>
+            <h1>Set IP Cookie!</h1>
+        Format:<br>
+        ws://123.123.123.123:9321<br>
+        
+        <input value="ws://:9001" id="ipInput"></input>
+        <button onclick="setIpBtn()">SET IP</button>
+        </div>
+        <script>
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+ d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+            
+            function setIpBtn(){
+                var text=document.getElementById("ipInput").value;
+                alert("Setting cookie to "+text)
+                setCookie("wsIp",text,365);
+            }
+            
+    </script>
+    
+        
+    </body>
+</html>
