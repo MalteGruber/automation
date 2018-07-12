@@ -69,8 +69,6 @@
                     </div>
                     <h1 id="timeUTC" class="on" style="text-align: center; font-family: monospace;">-</h1>
                     <h1 id="timeSWE" class="off" style="text-align: center; font-family: monospace;">-</h1>
-                    <h1 id="timeCA" class="on" style="text-align: center; font-family: monospace;">-</h1>
-
 
                     <script>
 
@@ -92,19 +90,7 @@
                         $("#timeUTC").text(h+":"+m+":"+s+" UTC");
                         }
 
-                        function setTimeCA(){
 
-                        var today=new Date();
-                        var h=today.getHours();
-                        var m=today.getMinutes();
-                        var s=today.getSeconds();
-                        //ugly/wont work winter
-                        h=(h-9)%24;
-                        // add a zero in front of numbers<10
-                        m=checkTime(m);
-                        s=checkTime(s);
-                        $("#timeCA").text(h+":"+m+":"+s+" CA");
-                        }
 
                         function setTimeSwe(){
 
@@ -120,7 +106,6 @@
 
                         setInterval(()=>{
                         setTimeUTC();
-                        setTimeCA();
                         setTimeSwe();
                         },500);
                     </script> 
