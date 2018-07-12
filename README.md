@@ -1,6 +1,9 @@
 # Summary
 This system is based on web-socket supported broadcasting. This allows for real-time communication of internet-connected units without the need of exposing ports. The system uses *nodes* that all connect to one central web-socket server. Nodes include programs running on virtual private servers, local units such as raspberry PIs or as a website on smartphones or computers.
 
+The system can be controlled with a web-page that can be seen here:
+[https://maltegruber.github.io/automation/homecontrol/](https://maltegruber.github.io/automation/homecontrol/)
+
 ## Nodes
 The following nodes exist in the broadcast network.
 ### 433 MHz Transmitter Node 
