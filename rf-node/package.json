@@ -6,7 +6,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "path": "^0.12.7",
-    "serialport": "^6.1.1"
+    "serialport": "^6.2.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,3 +15,4 @@
   "author": "",
   "license": "ISC"
 }
+ 
