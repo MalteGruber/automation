@@ -24,9 +24,6 @@ b.setOnReadyListener(function(){
 });
 b.setOnMessageListener(function(msg){
     timer.onMessage(msg);
-	if(msg.poke){
-		b.sendHeartbeat();
-	}
 })
 
 timer.setBroadcastCallback(function(m){
