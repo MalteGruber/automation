@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <!--   <script src="temperature.js"></script>
         <!--   <script src="stock_ticker.js"></script>
             <script src="stocks.js"></script>-->
-        <script src="websocket.js"></script>
-        <link rel="icon" type="image/png" href="light-bulb-icon.png">
+            <script src="websocket.js"></script>
 
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Home Control</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="custom.css" rel="stylesheet">
-    </head>
-    <body>
+            <link rel="icon" type="image/png" href="light-bulb-icon.png">
 
-
-
+            <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+            <title>Home Control</title>
+            <link href="css/bootstrap.min.css" rel="stylesheet">
+            <link href="custom.css" rel="stylesheet">
+        </head>
+        <body>
 
 
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <h1>Home Control</h1>
-
-                    <div id="buttons"></div>
-                    <br><br>
 
 
-                    All lamps
-                    <div class="btn-group btn-group-justified">
-                        <a class="btn btn-primary  buttons  off" onclick="setAllOff()">All off!</a>
-                        <a class="btn btn-primary buttons  on" onclick="setAllOn()">All on!</a>     
 
-                    </div>
-                    
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h1>Home Control</h1>
+
+                        <div id="buttons"></div>
+                        <br><br>
+
+
+                        All lamps
+                        <div class="btn-group btn-group-justified">
+                            <a class="btn btn-primary  buttons  off" onclick="setAllOff()">All off!</a>
+                            <a class="btn btn-primary buttons  on" onclick="setAllOn()">All on!</a>     
+
+                        </div>
+
                     <!--	
                             Brightness
         <div class="btn-group btn-group-justified">
@@ -47,52 +48,52 @@
         <a class="btn btn-primary  buttons  off" onclick="setMood(2)">Dinnertime</a>
         <a class="btn btn-primary  buttons  off" onclick="setMood(3)">Dark</a>
                             </div>
-                    -->
-                    <script src="homecontrol.js"></script>
+                        -->
+                        <script src="homecontrol.js"></script>
 
 
 
-                    <script>
+                        <script>
                             $(".btn").mouseup(function(){
-                            $(this).blur();
+                                $(this).blur();
                             })
-                    </script>
+                        </script>
 
 
-                </div>
-
-
-                <div class="col-sm-8">
-                    <h1>Debugging</h1>
-                    <div class="well">
-                        <div id="console-text"></div>
                     </div>
-                    <h1 id="timeUTC" class="on" style="text-align: center; font-family: monospace;">-</h1>
-                    <h1 id="timeSWE" class="off" style="text-align: center; font-family: monospace;">-</h1>
 
-                    <script>
 
-                                function checkTime(i) {
+                    <div class="col-sm-8">
+                        <h1>Debugging</h1>
+                        <div class="well">
+                            <div id="console-text"></div>
+                        </div>
+                        <h1 id="timeUTC" class="on" style="text-align: center; font-family: monospace;">-</h1>
+                        <h1 id="timeSWE" class="off" style="text-align: center; font-family: monospace;">-</h1>
+
+                        <script>
+
+                            function checkTime(i) {
                                 if(i<10) {
-                                i="0"+i;
+                                    i="0"+i;
                                 }
                                 return i;
-                                }
+                            }
 
-                        function setTimeUTC(){
-                        var now=new Date();
-                        var h=now.getUTCHours();
-                        var m=now.getUTCMinutes();
-                        var s=now.getUTCSeconds();
+                            function setTimeUTC(){
+                                var now=new Date();
+                                var h=now.getUTCHours();
+                                var m=now.getUTCMinutes();
+                                var s=now.getUTCSeconds();
                         // add a zero in front of numbers<10
                         m=checkTime(m);
                         s=checkTime(s);
                         $("#timeUTC").text(h+":"+m+":"+s+" UTC");
-                        }
+                    }
 
 
 
-                        function setTimeSwe(){
+                    function setTimeSwe(){
 
                         var today=new Date();
                         var h=today.getHours();
@@ -102,95 +103,114 @@
                         m=checkTime(m);
                         s=checkTime(s);
                         $("#timeSWE").text(h+":"+m+":"+s+" SWE");
-                        }
+                    }
 
-                        setInterval(()=>{
+                    setInterval(()=>{
                         setTimeUTC();
                         setTimeSwe();
-                        },500);
-                    </script> 
+                    },500);
+                </script> 
                     <!--
                     <div class="form-group">
                         <label for="usr">Name:</label>
                         <input type="text" class="form-control" id="debug-msg">
                     </div>
                     <button class="btn btn-success btn-block" onclick="sendDebugText()">Send Text</button>
-                    -->
-                </div>
-
+                -->
             </div>
 
+        </div>
 
 
 
-            <div class="row">
-                <div class="col-sm-4">
-                    <h1>Shortcuts</h1>
-                    <div class="row">
-                        <div class="col-sm-4">
 
-                            <a href="https://www.dn.se/" target="_blank" class="link-text" role="button">DN</a> <br>
-                            <a href="https://www.aftonbladet.se" target="_blank" class="link-text" role="button">Aftonbladet</a> <br>
-                            <a href="https://www.di.se/" target="_blank" class="link-text" role="button">DI</a>                    <br>
-                            <a href="https://www.avanza.se/placera/forstasidan.html" target="_blank" class="link-text" role="button">Avanza</a> <br>
-                            <a href="https://www.facebook.com/" target="_blank" class="link-text" role="button">Facebook</a> <br>
-                            <a href="http://www.lt.se/" target="_blank" class="link-text" role="button">LT</a> <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <h1>Shortcuts</h1>
+                <div class="row">
+                    <div class="col-sm-4">
 
-                            <a href="https://www.reddit.com/" target="_blank" class="link-text" role="button">Reddit</a> <br>
-                            <a href="https://www.flashback.org/aktuella-amnen" target="_blank" class="link-text" role="button">FB</a> <br>
-                        </div>
-                        <div class="col-sm-4">
-                            <a href="https://www.svtplay.se" target="_blank" class="link-text" role="button">SVT</a> <br>
-                            <a href="https://www.youtube.com" target="_blank" class="link-text" role="button">YouTube</a> <br>
-                            <a href="http://edition.cnn.com/" target="_blank" class="link-text" role="button">CNN</a> <br>
-                            <a href="http://www.bbc.com/news" target="_blank" class="link-text" role="button">BBC</a> <br>
-                            <a href="http://www.spiegel.de/" target="_blank" class="link-text" role="button">Der Spigel</a> <br>
-                            <a href="https://outlook.live.com/mail/#/inbox" target="_blank" class="link-text" role="button">Hotmail</a> <br>
+                        <a href="https://www.dn.se/" target="_blank" class="link-text" role="button">DN</a> <br>
+                        <a href="https://www.aftonbladet.se" target="_blank" class="link-text" role="button">Aftonbladet</a> <br>
+                        <a href="https://www.di.se/" target="_blank" class="link-text" role="button">DI</a>                    <br>
+                        <a href="https://www.avanza.se/placera/forstasidan.html" target="_blank" class="link-text" role="button">Avanza</a> <br>
+                        <a href="https://www.facebook.com/" target="_blank" class="link-text" role="button">Facebook</a> <br>
+                        <a href="http://www.lt.se/" target="_blank" class="link-text" role="button">LT</a> <br>
 
-                        </div>
+                        <a href="https://www.reddit.com/" target="_blank" class="link-text" role="button">Reddit</a> <br>
+                        <a href="https://www.flashback.org/aktuella-amnen" target="_blank" class="link-text" role="button">FB</a> <br>
                     </div>
-                </div>
-
-
-
-                <div class="col-sm-4">
-
-                    <h1>Status</h1>    
-                    <div class="well">
-                        <div id="heartbeatDisp">                            
-                        </div>
-                        <hr>
-                        <button class="btn btn-success btn-block on"  onclick="pingBtn()">Ping</button>
-
+                    <div class="col-sm-4">
+                        <a href="https://www.svtplay.se" target="_blank" class="link-text" role="button">SVT</a> <br>
+                        <a href="https://www.youtube.com" target="_blank" class="link-text" role="button">YouTube</a> <br>
+                        <a href="http://edition.cnn.com/" target="_blank" class="link-text" role="button">CNN</a> <br>
+                        <a href="http://www.bbc.com/news" target="_blank" class="link-text" role="button">BBC</a> <br>
+                        <a href="http://www.spiegel.de/" target="_blank" class="link-text" role="button">Der Spigel</a> <br>
+                        <a href="https://outlook.live.com/mail/#/inbox" target="_blank" class="link-text" role="button">Hotmail</a> <br>
 
                     </div>
-                    <script src="ping.js"></script>
-                </div>
-
-                <div class="col-sm-4">
-
-                    <h1>Timer</h1>    
-                    <div class="well">
-                        <h3 id="timerText">Timer</h3>
-                        <div class="btn-group">
-                            <button type="button" onclick="decTimer()" class="btn btn-warning">Decrease</button>
-                            <button type="button" onclick="incTimer()" class="btn btn-success">Increase</button>
-                        </div>
-                        <hr>
-                        <button class="btn btn-success btn-block"  onclick="commitTimer()">Commit timer</button>
-                        <button class="btn btn-primary btn-block"  onclick="listTimers()">List timers</button>
-                        <button class="btn btn-danger btn-block" onclick="purgeTimers()">Purge timers</button>
-
-                    </div>
-
                 </div>
             </div>
 
 
 
+            <div class="col-sm-4">
+
+                <h1>Status</h1>    
+                <div class="well">
+                    <div id="heartbeatDisp">                            
+                    </div>
+                    <hr>
+                    <button class="btn btn-success btn-block on"  onclick="pingBtn()">Ping</button>
 
 
+                </div>
+                <script src="ping.js"></script>
+            </div>
 
+            <div class="col-sm-4">
+
+                <h1>Timer</h1>    
+                <div class="well">
+                    <h3 id="timerText">Timer</h3>
+                    <div class="btn-group">
+                        <button type="button" onclick="decTimer()" class="btn btn-warning">Decrease</button>
+                        <button type="button" onclick="incTimer()" class="btn btn-success">Increase</button>
+                    </div>
+                    <hr>
+                    <button class="btn btn-success btn-block"  onclick="commitTimer()">Commit timer</button>
+                    <button class="btn btn-primary btn-block"  onclick="listTimers()">List timers</button>
+                    <button class="btn btn-danger btn-block" onclick="purgeTimers()">Purge timers</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <p class="param" data-cubesat-param="[heartbeat]->heartbeat" >LoL</p>
+            <button data-cubesat-btn='{poke:true}' type="button" class="btn btn-success on">POKE</button>
+            <button data-cubesat-btn='{macro:{cmd:"RECORD"}}' type="button" class="btn btn-success on">Record</button>
+            <button data-cubesat-btn='{macro:{cmd:"STOP"}}' type="button" class="btn btn-success off">Stop</button>
+            <button data-cubesat-btn='{macro:{cmd:"COMMIT"}}' type="button" class="btn btn-success off">Commit</button>
+            <button data-cubesat-btn='{macro:{cmd:"FLUSH"}}' type="button" class="btn btn-success on">Flush</button>
+            <button data-cubesat-btn='{macro:{cmd:"STATUS"}}' type="button" class="btn btn-success on">Status</button>
+            
+            <div>
+
+                <div class="row">
+                    <button data-cubesat-btn='{macroButton:0}' type="button" class="btn btn-success on">Marco 1</button>
+                    <button data-cubesat-btn='{macroButton:1}' type="button" class="btn btn-success on">Marco 2</button>
+                    <button data-cubesat-btn='{macroButton:2}' type="button" class="btn btn-success on">Marco 3</button>
+                    <div>
+
+                <div class="row">
+                    <button data-cubesat-btn='{spotify:{cmd:"PREV"}}' type="button" class="btn btn-success on">Previous</button>
+                    <button data-cubesat-btn='{spotify:{cmd:"NEXT"}}' type="button" class="btn btn-success on">Next</button>
+                    <button data-cubesat-btn='{spotify:{cmd:"PAUSE"}}' type="button" class="btn btn-success on">Pause</button>                    
+                    <button data-cubesat-btn='{spotify:{cmd:"PLAY"}}' type="button" class="btn btn-success on">Play</button>
+                    <div>
 
 
             <!--
@@ -206,14 +226,17 @@
                     <div id="chart_div"></div>
                 </div>
             </div>
-            -->
-        </div>
+        -->
+    </div>
 
-        <a href="setip.html">set ip address</a>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <a href="setip.html">set ip address</a>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-    </body>
+    <!--Must be after html-->
+    <script src="cubesat.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <script src="js/bootstrap.min.js"></script>
+</body>
 </html>
 

@@ -28,8 +28,9 @@
 
                 webSocket.onmessage = function (evt) {
                     pingMessageHandler(evt.data);
-                    pushLog("received: "+evt.data);
-                    console.log(evt.data)
+                    //pushLog("received: "+evt.data);
+                    onWsMessage(evt.data)
+                    //console.log(evt.data)
                     // webSocket.close();
                 };
 
