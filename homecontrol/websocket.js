@@ -19,6 +19,7 @@
                 //----------------------------------------
 
                 url=getCookie("wsIp")
+               // url=getCookie("wsIp")
                 console.log("cookie ip address",getCookie("wsIp"));
 
                 webSocket = new WebSocket(url);
@@ -28,7 +29,7 @@
 
                 webSocket.onmessage = function (evt) {
                     pingMessageHandler(evt.data);
-                    //pushLog("received: "+evt.data);
+                    pushLog("received: "+evt.data);
                     onWsMessage(evt.data)
                     //console.log(evt.data)
                     // webSocket.close();

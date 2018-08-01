@@ -7,12 +7,16 @@ function pushLineToDiv(line){
     para.appendChild(node);
     var element=document.getElementById("heartbeatDisp");
     element.appendChild(para);
+    para.style.marginBottom = "0px";
     return para;
 }
 function createStatusText(hb){
     return hb.heartbeat+" from "+hb.ip+" local time "+hb.time;
     for(var i=0;i<heartbeats.length;i++){
         heartbeats[i].style.color="#f00";
+
+        
+           
     }
 }
 var heartbeats=[];

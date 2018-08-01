@@ -50,7 +50,7 @@ function setAllOff(){
 }
 
 /*This function generates code for a on/off button pair, the button 
- * will call onSwitchButtonPress() when pressed with the arg {state=0,addr=4}*/
+* will call onSwitchButtonPress() when pressed with the arg {state=0,addr=4}*/
 function registerButton(html,name,addr){
     html=html.replace("TITLE",name);
     html=html.replace(/ADDR/g,addr);
@@ -64,14 +64,14 @@ var switchButtons=[
     {addr:3,name:"Monitor power"},
     {addr:5,name:"Nightstand"},
     {addr:6,name:"Fan"},
-]
+    ]
 
-var xhr=new XMLHttpRequest();
-xhr.open('GET','button.html',true);
-xhr.onreadystatechange=function(){
-    if(this.readyState!==4)
-        return;
-    if(this.status!==200)
+    var xhr=new XMLHttpRequest();
+    xhr.open('GET','button.html',true);
+    xhr.onreadystatechange=function(){
+        if(this.readyState!==4)
+            return;
+        if(this.status!==200)
         return; // or whatever error handling you want
     //document.getElementById('y').innerHTML= this.responseText;
     
@@ -106,6 +106,8 @@ function decTimer(){
     setTimerText();
 }
 
+
+
 function commitTimer(){
     var action=getOnCommands();
 
@@ -126,3 +128,37 @@ function listTimers(){
     websocketStringifySend({timecmd:{cmd:"LIST"}});
 }
 
+
+
+function checkTime(i) {
+    if(i<10) {
+        i="0"+i;
+    }
+    return i;
+}
+function setTimeUTC(){
+    var now=new Date();
+    var h=now.getUTCHours();
+    var m=now.getUTCMinutes();
+    var s=now.getUTCSeconds();
+                        // add a zero in front of numbers<10
+                        m=checkTime(m);
+                        s=checkTime(s);
+                        $("#timeUTC").text(h+":"+m+":"+s+" UTC");
+                    }
+                    function setTimeSwe(){
+
+                        var today=new Date();
+                        var h=today.getHours();
+                        var m=today.getMinutes();
+                        var s=today.getSeconds();
+                        // add a zero in front of numbers<10
+                        m=checkTime(m);
+                        s=checkTime(s);
+                        $("#timeSWE").text(h+":"+m+":"+s+" SWE");
+                    }
+
+                    setInterval(()=>{
+                        setTimeUTC();
+                        setTimeSwe();
+                    },500);
