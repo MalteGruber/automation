@@ -55,9 +55,6 @@ function refreshAccessToken(){
     // Save the access token so that it's used in future calls
     spotifyApi.setAccessToken(data.body['access_token']);
 
-
-
-    //console.log('The access token is ' , spotifyApi.getAccessToken());
   },
   function(err) {
     console.log('Could not refresh access token', err);

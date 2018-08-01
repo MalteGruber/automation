@@ -111,8 +111,12 @@ function onMessage(msg){
 
 
 		if(isRecordingMacro){
+			if(!equal(macroTrigger,msg)){
 			macro.push(msg);
-			console.log("Added command",msg);			
+			console.log("Added command",msg);		
+			}else{
+				console.log("WHOOPS! You are recording the trigger, ignoring!")
+			}	
 		}else if(isRecordingMacroTrigger){
 			macroTrigger=msg;
 			console.log("Macro trigger set to",macroTrigger)
