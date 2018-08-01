@@ -77,7 +77,13 @@ function onMessage(msg){
 		forceOff=false;
 		console.log("This subsystem is now on".underline.green)
 	}
-
+	if(msg.unmuteall){
+		if(forceOff){
+			sendWs(systemName+" is now listening!")
+			forceOff=false;
+			console.log("This subsystem is now on".underline.green)
+		}
+	}
 	if(forceOff){
 		console.log("Is off, ignoring message".red,JSON.stringify(msg).blue)
 		return;
