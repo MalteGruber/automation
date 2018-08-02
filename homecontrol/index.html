@@ -113,7 +113,7 @@
                     <hr>
                     <button class="btn btn-success btn-block on"  onclick="pingBtn()">Ping</button>
                 </div>
-                <script src="ping.js"></script>
+               
             </div>
  <div class="col-sm-6">
 
@@ -165,41 +165,18 @@
 <div id="seedForPingStatus"></div>
 <div  id="pingTemplate" hidden>
 <div class="input-group">
-    <p id="STATUS_TEXT_ID">STATUS_TEXT</p>
+    <p id="STATUS_ID">STATUS_TEXT</p>
     <span class="input-group-btn">
         <button  type="button" onclick="onMuteDisable('NODE_ID')" class="btn btn-success on">Unmute</button>
         <button type="button" onclick="onMuteEnable('NODE_ID')" class="btn btn-success off"">Mute</button>
     </span>
 </div>
-
-   </div>  
+</div>  
+ <button data-cubesat-btn='{unmuteall:true}' type="button" class="btn btn-success on">Unmute All</button> 
 
    <script type="text/javascript">
-       var template=$("#pingTemplate").html();
-       for (var i = 0; i < 0; i++) {
-        var tmp=template;
-        var nodeNameId=""+i
-        var statusTextId="statusText"+nodeNameId;
-           tmp=tmp.replace("STATUS_TEXT","status no "+i)           
-           tmp=tmp.replace("NODE_ID",nodeNameId)
-           tmp=tmp.replace("NODE_ID",nodeNameId)
-           tmp=tmp.replace("STATUS_TEXT_ID",statusTextId)
-           $("#"+statusTextId).html(statusTextId)
-            tmp=tmp.replace("hidden","")
-            $("#seedForPingStatus").html($("#seedForPingStatus").html()+tmp)
-       }
-       
-       function onMuteEnable(argument) {
-        alert(argument)
-        $("#statusText"+argument).text("MUTE!!!")
-           // body...
-       }
-              function onMuteDisable(argument) {
-        alert(argument)
-                $("#statusText"+argument).text("UNNNNMUTE!!!")
-           // body...
-       }
-      // alert(template)
+
+
    </script>   
 
         </div>
@@ -276,6 +253,7 @@
 
     <!--Must be after html-->
     <script src="cubesat.js"></script>
+     <script src="ping.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 
     <script src="js/bootstrap.min.js"></script>
