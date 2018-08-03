@@ -5,12 +5,12 @@ var MIN_TRANSP = 0.15;
 var paramList = [];
 
 function sendJSONMessage(msg) {
-    console.log("SENDING: ", (msg));
+//    console.log("SENDING: ", (msg));
     websocket.send(msg);
 }
 
 function sendMessage(msg) {
-    console.log("SENDING: ", JSON.stringify(msg));
+  //  console.log("SENDING: ", JSON.stringify(msg));
     websocket.send(JSON.stringify(msg));
 }
 
@@ -54,7 +54,7 @@ that is checked every time a message is received.
 
 /*This function tests if the filter strings are triggered by the incomming message*/
 function filterTriggered(filters, message) {
-    console.log(filters)
+  //  console.log(filters)
     for (var i = 0; i < filters.length; i++) {
         /*Using eval is really bad practice, however; all data in the system 
          * should be trusted and this is not trivial to do in another way so 
@@ -68,7 +68,7 @@ function filterTriggered(filters, message) {
             if(filters[i].indexOf("=")>0){
                 rhs=""//kill rhs, use the one provided in the html instead!
             }
-            console.log("message." + filters[i]+rhs)
+        //    console.log("message." + filters[i]+rhs)
         if (!(eval("message." + filters[i]+rhs))) {
             return false;
         }
@@ -102,9 +102,9 @@ function setNiceParamText(element,message,param){
 /*This function checks if the any of the parameter displays filters matches
  * the incomming message*/
 function testForParams(message) {
-    console.log(paramList.length)
+ //   console.log(paramList.length)
     for (var i = 0; i < paramList.length; i++) {
-        console.log("lol",i)
+  //      console.log("lol",i)
         var filters = paramList[i].filters;
         var param = paramList[i].param;
         /*Here we check the filter, if all filters match we set the parameter
@@ -141,7 +141,7 @@ function testForParams(message) {
     setInterval(() => {
         for (var i = 0; i < paramList.length; i++) {
             /*Set the parameter to zero tansparancy to indicate the update*/
-            console.log()
+        //    console.log()
             var transp = paramList[i].element.style.opacity;
             if (transp > MIN_TRANSP)
                 paramList[i].element.style.opacity = transp - 0.05;
@@ -151,7 +151,7 @@ function testForParams(message) {
 })();
 
 function onWsMessage(message) {
-    console.log("cubesat! ",message);
+   // console.log("cubesat! ",message);
     try{
         testForParams(JSON.parse(message));
     }catch(e){

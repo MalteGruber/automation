@@ -31,7 +31,7 @@ function addDisplay(id, hb){
     createDisplayEntrie(id,createStatusText(hb))
 }
 function updateExsistingDisplay(id, hb){
-    $("#statusText"+id).html(createStatusText(hb))
+    $("#statusText"+id).text(createStatusText(hb))
 }
 
 function createStatusText(hb){
@@ -45,6 +45,22 @@ function restartFadeout(id){
 }
 
 var heartbeats=[];
+
+(function() {
+    setInterval(() => {
+        for (var i = 0; i < heartbeats.length; i++) {
+            /*Set the parameter to zero tansparancy to indicate the update*/
+        //    console.log()
+            var transp = document.getElementById("statusText"+i).style.opacity;
+            console.log(transp)
+            var MIN_TRANSP=0.4;
+            if (transp > MIN_TRANSP)
+                document.getElementById("statusText"+i).style.opacity = transp - 0.05;
+        }
+
+    }, 200);
+})();
+
 function updateOrAddHeartbeat(hb){
     var found=false;
     /*If we have received the heartbead previously, replace it with the fresh one*/
@@ -54,23 +70,25 @@ function updateOrAddHeartbeat(hb){
             updateExsistingDisplay(i,hb);
             restartFadeout(i);
             found=true;
+            $('#statusText'+i).css('opacity', '1.0');
             break;
+            
         }
     }
     if(!found){
         /*heartbeats length is the same as id after push*/
-        addDisplay(heartbeats.length,hb.heartbeat)
+        addDisplay(heartbeats.length,hb)
         restartFadeout(heartbeats.length);
         heartbeats.push(hb);
     }
 }
 /*Receives ws messages and checks for pings*/
 function pingMessageHandler(msg){
-    console.log("lol",msg)
+    
     try{
         var e=JSON.parse(msg);
         if(e.heartbeat){
-            console.log("HEARTBEAT",e.heartbeat);
+        //    console.log("HEARTBEAT",e.heartbeat);
             updateOrAddHeartbeat(e);
         }
     }catch(e){
@@ -83,14 +101,14 @@ function createDisplayEntrie(idNo,text){
     var tmp=template;
     var nodeNameId=""+idNo
     var statusTextId="statusText"+nodeNameId;
-    console.log(idNo);
     tmp=tmp.replace("STATUS_TEXT",text)           
     tmp=tmp.replace("NODE_ID",nodeNameId)
     tmp=tmp.replace("NODE_ID",nodeNameId)
     tmp=tmp.replace("STATUS_ID",statusTextId)
-    $("#"+statusTextId).html(statusTextId)
+    //$("#"+statusTextId).html(statusTextId)
     tmp=tmp.replace("hidden","")
     $("#seedForPingStatus").html($("#seedForPingStatus").html()+tmp)
+    $('#'+statusTextId).css('opacity', '1.0');
 }
 
 
@@ -104,3 +122,4 @@ function onMuteEnable(argument) {
    websocket.send(JSON.stringify(({unmute:true,who:heartbeats[argument].heartbeat})));
     // body...
 }
+

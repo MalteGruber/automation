@@ -24,7 +24,9 @@
 
                 webSocket = new WebSocket(url);
                 webSocket.onopen = function (evt) {          
-                    webSocket.send('{"poke":true}');
+                    setTimeout(()=>{
+                        webSocket.send('{"poke":true}');
+                    },400);
                 };
 
                 webSocket.onmessage = function (evt) {

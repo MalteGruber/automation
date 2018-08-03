@@ -24,7 +24,17 @@
 
 
     <div class="container">
-
+        <div class="row">
+            <div class="col-sm-1">
+                <div style="background-color: #0f0;">Done</div>
+                 </div>
+                        <div class="col-sm-1">
+                <div style="background-color: #f00;">Done</div>
+                 </div>
+                        <div class="col-lg-1">
+                <div style="background-color: #0f0;">Done</div>
+                 </div>
+        </div>
 <!----------------------------------TOP ROW--------------------------------------->
         <div class="row">
 
@@ -108,10 +118,23 @@
                 <h3>Status</h3>    
 
                 <div class="well">
-                    <div id="heartbeatDisp" style="margin-bottom: 0px;">                            
-                    </div>
+<div id="seedForPingStatus"></div>
+<div  id="pingTemplate" hidden>
+<div class="input-group"> 
+    <p id="STATUS_ID">STATUS_TEXT</p>
+    <span class="input-group-btn">
+        <button  type="button" onclick="onMuteDisable('NODE_ID')" class="btn btn-success on">Unmute</button>
+        <button type="button" onclick="onMuteEnable('NODE_ID')" class="btn btn-success off"">Mute</button>
+    </span>
+</div>
+</div>  
+
                     <hr>
-                    <button class="btn btn-success btn-block on"  onclick="pingBtn()">Ping</button>
+                    <div class="row">
+                        
+                    <button class="btn btn-success on "  onclick="pingBtn()">Ping</button>
+                     <button data-cubesat-btn='{unmuteall:true}' type="button" class="btn btn-success on">Unmute All</button> 
+   </div>
                 </div>
                
             </div>
@@ -144,9 +167,11 @@
         <div class="row">
           <div class="col-sm">
             <p>Macros</p>
+            <div class="btn-group btn-group-justified">
             <button data-cubesat-btn='{log:{mood:-10}}' type="button" class="btn btn-success on">Very Bad</button>
             <button data-cubesat-btn='{log:{mood:0}}' type="button" class="btn btn-success on">Medium</button>
-            <button data-cubesat-btn='{log:{mood:10}}' type="button" class="btn btn-success on">Good</button>            
+            <button data-cubesat-btn='{log:{mood:10}}' type="button" class="btn btn-success on">Good</button>  
+            </div>
         </div> 
     </div>
 
@@ -162,17 +187,6 @@
         </div> 
  </div>
 
-<div id="seedForPingStatus"></div>
-<div  id="pingTemplate" hidden>
-<div class="input-group">
-    <p id="STATUS_ID">STATUS_TEXT</p>
-    <span class="input-group-btn">
-        <button  type="button" onclick="onMuteDisable('NODE_ID')" class="btn btn-success on">Unmute</button>
-        <button type="button" onclick="onMuteEnable('NODE_ID')" class="btn btn-success off"">Mute</button>
-    </span>
-</div>
-</div>  
- <button data-cubesat-btn='{unmuteall:true}' type="button" class="btn btn-success on">Unmute All</button> 
 
    <script type="text/javascript">
 
